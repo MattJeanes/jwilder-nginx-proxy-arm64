@@ -3,4 +3,4 @@ An unofficial ARM64 build of [jwilder/nginx-proxy](https://hub.docker.com/r/jwil
 
 # DockerHub
 
-[![](https://img.shields.io/docker/pulls/mattjeanes/teslamateagile.svg)](https://hub.docker.com/r/mattjeanes/jwilder-nginx-proxy-arm64)
+[![](https://img.shields.io/docker/pulls/mattjeanes/jwilder-nginx-proxy-arm64.svg)](https://hub.docker.com/r/mattjeanes/jwilder-nginx-proxy-arm64)
