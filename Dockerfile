@@ -1,5 +1,4 @@
-FROM arm64v8/nginx 
-
+FROM arm64v8/nginx:1.19.3
 LABEL maintainer="Jason Wilder mail@jasonwilder.com, Matt Jeanes mattjeanes23@gmail.com"
 
 # Install wget and install/updates certificates
@@ -14,8 +13,7 @@ RUN apt-get update \
 
 # Configure Nginx and apply fix for very long server names
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
- && sed -i 's/^http {/&\n    server_names_hash_bucket_size 128;/g' /etc/nginx/nginx.conf
-
+ && sed -i 's/worker_processes  1/worker_processes  auto/' /etc/nginx/nginx.conf
 
 # Install Forego
 RUN wget --quiet https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-arm64.tgz && \
@@ -27,10 +25,13 @@ RUN wget --quiet https://github.com/MattJeanes/jwilder-nginx-proxy-arm64/release
  && rm /docker-gen-arm64.tar.gz
 
 
-ENV NGINX_PROXY_VERSION "0.6.0"
+ENV NGINX_PROXY_VERSION "0.8.0"
 RUN git clone --branch ${NGINX_PROXY_VERSION} https://github.com/jwilder/nginx-proxy.git /app
 
+
 WORKDIR /app/
+
+RUN cp network_internal.conf /etc/nginx/
 
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
