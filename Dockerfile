@@ -20,6 +20,7 @@ RUN wget --quiet https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-arm64.
 	tar xvf forego-stable-linux-arm64.tgz -C /usr/local/bin && \
 	chmod u+x /usr/local/bin/forego
 
+ENV DOCKER_GEN_VERSION "0.7.4"
 RUN wget --quiet https://github.com/MattJeanes/jwilder-nginx-proxy-arm64/releases/download/docker-gen-4edc190f/docker-gen-arm64.tar.gz \
  && tar -C /usr/local/bin -xvzf docker-gen-arm64.tar.gz \
  && rm /docker-gen-arm64.tar.gz
